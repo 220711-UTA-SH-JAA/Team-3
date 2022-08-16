@@ -1,2 +1,2 @@
-# Team-3-P2
+# Team-3
 amogus
