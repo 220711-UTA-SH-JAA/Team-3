@@ -75,9 +75,9 @@
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<!-- Needs properties for each of our db connection details -->
 		<property name="driverClassName" value="org.postgresql.Driver"></property>
-		<property name="url" value=""></property>
-		<property name="username" value=""></property>
-		<property name="password" value=""></property>
+		<property name="url" value="jdbc:postgresql://liminal-database.cpf45o5kaijw.us-west-1.rds.amazonaws.com:5432/project2"></property>
+		<property name="username" value="hectoast"></property>
+		<property name="password" value="pwd"></property>
 	</bean>
 	
 	<!-- As we saw last week, we need a sessionFactory for hibernate to create sessions -->
