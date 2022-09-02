@@ -35,21 +35,21 @@ public class Cart{
 	)
 	private List<Item> items;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	@JoinColumn(name="user_id")
-	@JsonIgnore
-	private User user;
+	//@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	//@JoinColumn(name="user_id")
+	//@JsonIgnore
+	//private User user;
 	
 	public Cart() {
 		super();
 		items  = new ArrayList<>();
 	}
 
-	public Cart(Integer cartId, List<Item> items, User user) {
+	public Cart(Integer cartId, List<Item> items) {
 		super();
 		this.cartId = cartId;
 		this.items = items;
-		this.user = user;
+//		this.user = user;
 	}
 
 	public Integer getListId() {
@@ -69,16 +69,16 @@ public class Cart{
 		this.items = items;
 	}
 
-	public User getUser() {
-		return user;
-	}
+	//public User getUser() {
+//		return user;
+//	}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
 
-	@Override
-	public String toString() {
-		return "Cart [cartId=" + cartId + ", items=" + items + ", user=" + user.getUsername() + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Cart [cartId=" + cartId + ", items=" + items + ", user=" + user.getUsername() + "]";
+//	}
 }

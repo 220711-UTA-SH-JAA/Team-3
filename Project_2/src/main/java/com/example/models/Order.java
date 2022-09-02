@@ -19,7 +19,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="order")
+@Table(name="orders")
 public class Order{
 	
 	@Id
@@ -35,21 +35,21 @@ public class Order{
 	)
 	private List<Item> items;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	@JoinColumn(name="user_id")
-	@JsonIgnore
-	private User user;
+//	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+//	@JoinColumn(name="user_id")
+//	@JsonIgnore
+//	private User user;
 	
 	public Order() {
 		super();
 		items  = new ArrayList<>();
 	}
 
-	public Order(Integer orderId, List<Item> items, User user) {
+	public Order(Integer orderId, List<Item> items) {
 		super();
 		this.orderId = orderId;
 		this.items = items;
-		this.user = user;
+		//this.user = user;
 	}
 
 	public Integer getOrderId() {
@@ -68,16 +68,16 @@ public class Order{
 		this.items = items;
 	}
 
-	public User getUser() {
-		return user;
-	}
+//	public User getUser() {
+//		return user;
+//	}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
 
-	@Override
-	public String toString() {
-		return "Order [orderId=" + orderId + ", items=" + items + ", user=" + user.getUsername() + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Order [orderId=" + orderId + ", items=" + items + ", user=" + user.getUsername() + "]";
+//	}
 }
