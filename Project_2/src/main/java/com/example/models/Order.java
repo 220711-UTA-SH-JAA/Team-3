@@ -25,7 +25,7 @@ public class Order{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="order_id")
-	private Integer orderId;
+	public Integer orderId;
 	
 	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(
@@ -33,23 +33,36 @@ public class Order{
 			joinColumns = {@JoinColumn(name="order_id")},
 			inverseJoinColumns = {@JoinColumn(name="item_id")}
 	)
-	private List<Item> items;
+	
 	
 //	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 //	@JoinColumn(name="user_id")
 //	@JsonIgnore
-//	private User user;
+	
+	
+	@Id
+	// Auto-generate id value
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "order_Id")
+	public Integer order_Id;
+	
+	@Column(name = "user")
+	public Integer user;
+	
+	@Column(name = "items")
+	public List<Item> items;
 	
 	public Order() {
 		super();
 		items  = new ArrayList<>();
 	}
 
-	public Order(Integer orderId, List<Item> items) {
+	public Order( List<Item> items, Integer userId) {
+		//Integer orderId,
 		super();
-		this.orderId = orderId;
+		//this.orderId = orderId;
 		this.items = items;
-		//this.user = user;
+		this.user = userId;
 	}
 
 	public Integer getOrderId() {
@@ -68,16 +81,16 @@ public class Order{
 		this.items = items;
 	}
 
-//	public User getUser() {
-//		return user;
-//	}
+	public Integer getUserId() {
+		return user;
+	}
 
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
+	public void setUserId(Integer user) {
+		this.user = user;
+	}
 
-//	@Override
-//	public String toString() {
-//		return "Order [orderId=" + orderId + ", items=" + items + ", user=" + user.getUsername() + "]";
-//	}
+	@Override
+	public String toString() {
+		return "Order [order_Id=" + order_Id + ", items=" + items + ", userId=" + user + "]";
+	}
 }

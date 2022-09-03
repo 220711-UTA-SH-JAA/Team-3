@@ -30,7 +30,7 @@ public class ItemDaoHibernate implements ItemDao {
 	@Override
 	public Item getItemById(int id) {
 		
-		List<Item> item = HibernateUtil.getSession().createQuery("form Item where itemId=:id", Item.class).setParameter("id", id).list();
+		List<Item> item = HibernateUtil.getSession().createQuery("from Item where itemId=:id", Item.class).setParameter("id", id).list();
 		
 		if(item.size() < 1) {
 			return null;
@@ -48,7 +48,7 @@ public class ItemDaoHibernate implements ItemDao {
 	@Override
 	public Item selectItemByName(String name) {
 		
-		Item p = HibernateUtil.getSession().createQuery("form Item where itemName=:name", Item.class).setParameter("name", name).uniqueResult();
+		Item p = HibernateUtil.getSession().createQuery("from Item where itemName=:name", Item.class).setParameter("name", name).uniqueResult();
 		
 		
 		return p;

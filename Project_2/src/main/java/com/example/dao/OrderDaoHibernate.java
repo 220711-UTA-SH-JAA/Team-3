@@ -34,14 +34,14 @@ public class OrderDaoHibernate implements OrderDao {
 
 	@Override
 	public List<Order> getOrdersByUser(User user) {
-		List<Order> userOrders = HibernateUtil.getSession().createQuery("from Order order where user=:user orderby order.orderId", Order.class).setParameter("user",user).list();
+		List<Order> userOrders = HibernateUtil.getSession().createQuery("from Order where userId=:user ORDER BY order.order_Id", Order.class).setParameter("userId",user).list();
 		
 		return userOrders;
 
 	}
 	@Override
-	public Order getOrderById(String id) {
-		List<Order> userOrders = HibernateUtil.getSession().createQuery("from Order order where orderId=:orderId orderby order.orderId", Order.class).setParameter("orderId",id).list();
+	public Order getOrderById(Integer id) {
+		List<Order> userOrders = HibernateUtil.getSession().createQuery("from Order where orderId=:id ORDER BY id", Order.class).setParameter("orderId",id).list();
 		
 		return userOrders.get(0);
 	}

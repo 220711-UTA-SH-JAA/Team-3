@@ -15,7 +15,7 @@ public interface OrderDao {
 		List<Order> getOrdersByUser(User user);
 
 		//view details of previous order
-		Order getOrderById(String id);
+		Order getOrderById(Integer id);
 
 		
 		

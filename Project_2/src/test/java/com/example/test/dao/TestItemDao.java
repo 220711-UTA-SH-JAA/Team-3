@@ -31,16 +31,35 @@ public class TestItemDao
   @Rollback(true)
   public void createItem()
   {
+	
     Item item = new Item();
     item.itemName = "juice";
-    item.itemPrice = 1.99;
-    
+    item.itemPrice = 2.00;
+    /*System.out.println(items);
+    for (int i = 0; i < items.size() - 1; i++) {
+    		itemDAO.deleteItem(items.get(i));
+    		System.out.println(items.get(i));
+    		System.out.println(items);
+    	}*/
     itemDAO.createItem(item);
-
+    //System.out.println(items);
     List<Item> items = itemDAO.getAllItems();
-    Assert.assertTrue("", items.size() > 0);
-    Assert.assertEquals(item.itemName, items.get(items.size() -1).itemName);
-    //itemDAO.removeUser(user);
+    Item Item2 = new Item();
+    Item2 = itemDAO.selectItemByName(item.itemName);
+    Assert.assertEquals(Item2.itemName, "juice");
+    Item Item3 = new Item();
+    
+    Item3 = itemDAO.getItemById(item.itemId);
+    Assert.assertEquals(Item3.itemName, "juice");
+    
+    Item3.itemName = "testing";
+    itemDAO.updateItem(Item3);
+    Assert.assertEquals(Item3.itemName, "testing");
+    //Assert.assertTrue("", items.size() > 0);
+    Assert.assertEquals(Item3.itemName, items.get(items.size() -1).itemName);
+    itemDAO.deleteItem(Item3);
+    //Assert.assertEquals(0 , items.size());
+    
   }
   
   
