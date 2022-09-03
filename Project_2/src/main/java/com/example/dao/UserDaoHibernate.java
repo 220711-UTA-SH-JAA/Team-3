@@ -26,13 +26,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @Repository("UserDaoBean")
 public class UserDaoHibernate implements UserDao {
-	private SessionFactory sessFact;
-	
-	
 	
 	@Autowired
-	public UserDaoHibernate(SessionFactory sessFact) {
-		this.sessFact = sessFact;
+	public UserDaoHibernate() {
 	}
 	
 	@Override
@@ -52,12 +48,26 @@ public class UserDaoHibernate implements UserDao {
 	public boolean loginUser(String username, String password) {
 		// TODO Auto-generated method stub
 
-		List<User> users = sessFact.getCurrentSession().createQuery("from user where username=:username and password=:password", User.class)
+		List<User> users = HibernateUtil.getSession().createQuery("from User where username=:username and password=:password", User.class)
 				.setParameter("username", username).setParameter("password", password).list();
 
 		if (users.size() < 1) {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public List<User> getAllUsers() {
+
+		return HibernateUtil.getSession().createQuery("from User ", User.class)
+				.list();
+
+	}
+
+	@Override
+	public void removeUser(User user) {
+		// TODO Auto-generated method stub
+		HibernateUtil.getSession().delete(user);
 	}
 }

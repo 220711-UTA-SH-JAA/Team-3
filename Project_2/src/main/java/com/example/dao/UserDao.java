@@ -17,10 +17,11 @@ public interface UserDao {
 	boolean loginUser(String username, String password);
 	
 	
-	
+	List<User> getAllUsers();
 
     void createUser(User user);
 	
+    void removeUser(User user);
 
 }
 

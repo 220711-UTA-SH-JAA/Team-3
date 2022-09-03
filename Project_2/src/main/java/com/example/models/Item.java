@@ -12,15 +12,15 @@ import javax.persistence.Table;
 public class Item {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="item_id")
-	private Integer itemId;
+	public Integer itemId;
 	
 	@Column(name="item_name")
-	private String itemName;
+	public String itemName;
 	
 	@Column(name="item_price")
-	private Double itemPrice;
+	public Double itemPrice;
 	
 	public Item() {
 		super();

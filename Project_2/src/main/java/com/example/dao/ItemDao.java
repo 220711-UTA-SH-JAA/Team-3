@@ -10,9 +10,9 @@ public interface ItemDao {
 	void createItem(Item i);
 	
 	//READ
-	Item selectItemById(int id );
+	Item getItemById(int id );
 	
-	List<Item> readAllItems();
+	List<Item> getAllItems();
 	
 	Item selectItemByName(String itemName);
 	

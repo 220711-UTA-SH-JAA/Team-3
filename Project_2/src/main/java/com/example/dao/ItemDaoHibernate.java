@@ -8,31 +8,29 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.models.Item;
+import com.example.utils.HibernateUtil;
 
 
 @Transactional
 @Repository("ItemDaoBean")
 public class ItemDaoHibernate implements ItemDao {
 	
-	private SessionFactory sessFact;
-	
-	
 	
 	@Autowired
-	public ItemDaoHibernate(SessionFactory sessFact) {
-		this.sessFact = sessFact;
+	public ItemDaoHibernate() {
+		//this.sessFact = sessFact;
 	}
 
 	@Override
 	public void createItem(Item p) {
-		sessFact.getCurrentSession().save(p);
+		HibernateUtil.getSession().save(p);
 		
 	}
 
 	@Override
-	public Item selectItemById(int id) {
+	public Item getItemById(int id) {
 		
-		List<Item> item = sessFact.getCurrentSession().createQuery("form Item where itemId=:id", Item.class).setParameter("id", id).list();
+		List<Item> item = HibernateUtil.getSession().createQuery("form Item where itemId=:id", Item.class).setParameter("id", id).list();
 		
 		if(item.size() < 1) {
 			return null;
@@ -42,15 +40,15 @@ public class ItemDaoHibernate implements ItemDao {
 	}
 
 	@Override
-	public List<Item> readAllItems() {
-		return sessFact.getCurrentSession().createQuery("from Item", Item.class).list();
+	public List<Item> getAllItems() {
+		return HibernateUtil.getSession().createQuery("from Item", Item.class).list();
 	}
 		
 
 	@Override
 	public Item selectItemByName(String name) {
 		
-		Item p = sessFact.getCurrentSession().createQuery("form Item where itemName=:name", Item.class).setParameter("name", name).uniqueResult();
+		Item p = HibernateUtil.getSession().createQuery("form Item where itemName=:name", Item.class).setParameter("name", name).uniqueResult();
 		
 		
 		return p;
@@ -58,13 +56,13 @@ public class ItemDaoHibernate implements ItemDao {
 
 	@Override
 	public void updateItem(Item p) {
-		sessFact.getCurrentSession().update(p);
+		HibernateUtil.getSession().update(p);
 		
 	}
 
 	@Override
 	public void deleteItem(Item p) {
-		sessFact.getCurrentSession().delete(p);
+		HibernateUtil.getSession().delete(p);
 	
 		
 	}

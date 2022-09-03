@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.models.User;
+import com.example.utils.HibernateUtil;
 import com.example.models.Item;
 import com.example.models.Cart;
 
@@ -22,12 +23,12 @@ import com.example.models.Cart;
 public class CartDaoHibernate implements CartDao {
 	
 	
-	private SessionFactory sessFact;
+	//private SessionFactory sessFact;
 	
 	@Autowired
-	public CartDaoHibernate(SessionFactory sessFact) {
+	public CartDaoHibernate() {
 		
-		this.sessFact = sessFact;
+		//this.sessFact = HibernateUtil.getSession();
 	}
 	
 	
@@ -36,7 +37,7 @@ public class CartDaoHibernate implements CartDao {
 	@Override
 	public void createCart(Cart cart) {
 		
-		sessFact.getCurrentSession().save(cart);
+		HibernateUtil.getSession().save(cart);
 		
 	
 	}
@@ -46,21 +47,21 @@ public class CartDaoHibernate implements CartDao {
 
 	@Override
 	public void addItemToCart(Cart cart, Item item) {
-		sessFact.getCurrentSession().save(item);
+		HibernateUtil.getSession().save(item);
 	
 			
 	}
 
 	@Override
 	public void deleteItemFromCart(Cart cart, Item item) {
-		sessFact.getCurrentSession().delete(item);
+		HibernateUtil.getSession().delete(item);
 		
 	}
 	
 	
 	@Override
 	public Cart readCartByUser(User user) {	
-		List<Cart> userCarts = sessFact.getCurrentSession().createQuery("from Cart cart where user=:user orderby cart.CartId", Cart.class).setParameter("user",user).list();
+		List<Cart> userCarts = HibernateUtil.getSession().createQuery("from Cart cart where user=:user orderby cart.CartId", Cart.class).setParameter("user",user).list();
 	
 		if (userCarts.size() < 1) {
 			return null;

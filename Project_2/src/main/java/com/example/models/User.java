@@ -20,22 +20,22 @@ public class User {
 
 	// Add different column constraints
 	@Column(name = "user_id")
-	private Integer user_Id;
+	public Integer user_Id;
 
 	@Column(name = "user_first_name")
-	private String firstName;
+	public String firstName;
 
 	@Column(name = "user_last_name")
-	private String lastName;
+	public String lastName;
 
 	// Unique constraint
 	@Column(unique = true)
-	private String email;
+	public String email;
 
 	@Column(unique = true)
-	private String username;
+	public String username;
 
-	private String password;
+	public String password;
 
 	public User(String firstName, String lastName, String email, String username, String password) {
 
