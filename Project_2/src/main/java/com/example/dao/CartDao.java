@@ -19,7 +19,7 @@ public interface CartDao {
 	
 	
 	
-	Cart readCartByUser(User user);
+	Cart getCartByUser(User user);
 	
 	
 	

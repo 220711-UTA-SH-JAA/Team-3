@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Cart{
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name="cart_id")
 	private Integer cartId;
 	
@@ -33,12 +33,12 @@ public class Cart{
 			joinColumns = {@JoinColumn(name="cart_id")},
 			inverseJoinColumns = {@JoinColumn(name="item_id")}
 	)
-	private List<Item> items;
+	public List<Item> items;
 	
-	//@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	//@JoinColumn(name="user_id")
-	//@JsonIgnore
-	//private User user;
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="user_id")
+	@JsonIgnore
+	public User user;
 	
 	public Cart() {
 		super();

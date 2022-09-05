@@ -46,7 +46,7 @@ public class ItemDaoHibernate implements ItemDao {
 		
 
 	@Override
-	public Item selectItemByName(String name) {
+	public Item getItemByName(String name) {
 		
 		Item p = HibernateUtil.getSession().createQuery("from Item where itemName=:name", Item.class).setParameter("name", name).uniqueResult();
 		

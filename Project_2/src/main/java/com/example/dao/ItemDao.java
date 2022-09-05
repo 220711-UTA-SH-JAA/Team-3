@@ -14,7 +14,7 @@ public interface ItemDao {
 	
 	List<Item> getAllItems();
 	
-	Item selectItemByName(String itemName);
+	Item getItemByName(String itemName);
 	
 	//UPDATE
 	void updateItem(Item p);

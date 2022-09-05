@@ -37,8 +37,12 @@ public class CartDaoHibernate implements CartDao {
 	@Override
 	public void createCart(Cart cart) {
 		
-		HibernateUtil.getSession().save(cart);
+		//HibernateUtil.getSession().save(cart);
 		
+		Session session = HibernateUtil.getSession();
+		session.beginTransaction();
+		session.persist(cart);
+		session.getTransaction().commit();
 	
 	}
 	
@@ -60,8 +64,8 @@ public class CartDaoHibernate implements CartDao {
 	
 	
 	@Override
-	public Cart readCartByUser(User user) {	
-		List<Cart> userCarts = HibernateUtil.getSession().createQuery("from Cart cart where user=:user orderby cart.CartId", Cart.class).setParameter("user",user).list();
+	public Cart getCartByUser(User user) {	
+		List<Cart> userCarts = HibernateUtil.getSession().createQuery("from Cart cart where user=:user ", Cart.class).setParameter("user",user).list();
 	
 		if (userCarts.size() < 1) {
 			return null;

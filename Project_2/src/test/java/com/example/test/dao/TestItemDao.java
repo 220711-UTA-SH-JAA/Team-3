@@ -1,5 +1,6 @@
 package com.example.test.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Assert;
@@ -29,38 +30,45 @@ public class TestItemDao
   @Test
   @Transactional
   @Rollback(true)
-  public void createItem()
+  public void testCreateItem()
   {
-	
+	String timeStr = new Date().toString();
     Item item = new Item();
-    item.itemName = "juice";
+    item.itemName = timeStr;
     item.itemPrice = 2.00;
-    /*System.out.println(items);
-    for (int i = 0; i < items.size() - 1; i++) {
-    		itemDAO.deleteItem(items.get(i));
-    		System.out.println(items.get(i));
-    		System.out.println(items);
-    	}*/
+ 
     itemDAO.createItem(item);
-    //System.out.println(items);
+
     List<Item> items = itemDAO.getAllItems();
-    Item Item2 = new Item();
-    Item2 = itemDAO.selectItemByName(item.itemName);
-    Assert.assertEquals(Item2.itemName, "juice");
-    Item Item3 = new Item();
-    
-    Item3 = itemDAO.getItemById(item.itemId);
-    Assert.assertEquals(Item3.itemName, "juice");
-    
-    Item3.itemName = "testing";
-    itemDAO.updateItem(Item3);
-    Assert.assertEquals(Item3.itemName, "testing");
-    //Assert.assertTrue("", items.size() > 0);
-    Assert.assertEquals(Item3.itemName, items.get(items.size() -1).itemName);
-    itemDAO.deleteItem(Item3);
-    //Assert.assertEquals(0 , items.size());
+    Item item2 =items.get(items.size() -1);
+   
+    Assert.assertEquals(item2.itemName, timeStr);
+    Assert.assertEquals(item2.itemPrice, 2.00, 0);
     
   }
   
+  @Test
+  @Transactional
+  @Rollback(true)
+  public void testGetItemById()
+  {
+	
+   Item item = itemDAO.getItemById(21);
+
+    Assert.assertEquals(item.itemName, "juice");
+    
+  }
+  
+  @Test
+  @Transactional
+  @Rollback(true)
+  public void testGetItemByName()
+  {
+	
+   Item item = itemDAO.getItemByName("Mon Sep 05 10:28:31 EDT 2022");
+
+    Assert.assertEquals(item.itemId, 23, 0);
+    
+  }
   
 }
