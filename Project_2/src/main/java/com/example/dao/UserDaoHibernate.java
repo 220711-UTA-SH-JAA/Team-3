@@ -4,17 +4,13 @@
  */
 package com.example.dao;
 
-import com.example.models.Item;
+
 import com.example.models.User;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
-import com.example.utils.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,48 +22,43 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @Repository("UserDaoBean")
 public class UserDaoHibernate implements UserDao {
-	
+	private SessionFactory sessFact;
 	@Autowired
-	public UserDaoHibernate() {
+	public UserDaoHibernate(SessionFactory sessFact) {
+		this.sessFact = sessFact;
 	}
 	
 	@Override
 	public void createUser(User user) {
 		// Builtin save method from hibernate
-		Session ses = HibernateUtil.getSession();
+		// Session ses = HibernateUtil.getSession();
 
-		Transaction transaction = ses.beginTransaction();
+		// Transaction transaction = ses.beginTransaction();
 
-		ses.save(user);
+		// ses.save(user);
 
-		transaction.commit();
+		// transaction.commit();
+		sessFact.getCurrentSession().save(user);
 
 	}
 
-	@Override
-	public boolean loginUser(String username, String password) {
-		// TODO Auto-generated method stub
-
-		List<User> users = HibernateUtil.getSession().createQuery("from User where username=:username and password=:password", User.class)
-				.setParameter("username", username).setParameter("password", password).list();
-
-		if (users.size() < 1) {
-			return false;
-		}
-		return true;
-	}
+	
 
 	@Override
 	public List<User> getAllUsers() {
 
-		return HibernateUtil.getSession().createQuery("from User ", User.class)
-				.list();
+		return sessFact.getCurrentSession().createQuery("from User", User.class).list();
 
 	}
 
 	@Override
 	public void removeUser(User user) {
-		// TODO Auto-generated method stub
-		HibernateUtil.getSession().delete(user);
+		sessFact.getCurrentSession().delete(user);
+	}
+
+	@Override
+	public void updateUser(User user) {
+		sessFact.getCurrentSession().update(user);
+		
 	}
 }
