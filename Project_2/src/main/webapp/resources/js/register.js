@@ -75,7 +75,7 @@ try{
     console.log(res);
     window.location.href = "./logged-in.html";
     } catch(e){
-        console.log("The user did not login successfully");
+        console.log("The user did not register successfully");
         console.log(e);
     }
 }

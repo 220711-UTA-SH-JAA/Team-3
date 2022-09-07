@@ -12,10 +12,14 @@ menu.addEventListener('click', mobileMenu);
 let usernameElement = document.getElementById("username");
 let passwordElement = document.getElementById("password");
 let errorMessage = document.getElementById("login-error");
+let formElement = document.getElementById("form");
+form.addEventListener('submit', login);
 //let submitBtn = document.getElementById("")
 //submitBtn.addEventListener("click", login);
 
-async function login(){
+async function login(ethan){
+
+    ethan.preventDefault();
 
     errorMessage.innerText = "";
 
