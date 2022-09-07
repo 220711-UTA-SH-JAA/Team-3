@@ -21,7 +21,7 @@ async function login(ethan){
 
     ethan.preventDefault();
 
-    errorMessage.innerText = "";
+    //errorMessage.innerText = "";
 
     console.log("We handled the click event of the submit button");
     //getting username from the form field
@@ -37,20 +37,21 @@ async function login(ethan){
     console.log("Ready to login: ", loginObj);
 try{
     //if the request is successful all is well, if it fails/returns !200 it will be in the catch
-    let req = await fetch("http://localhost:8080/Project2/api/user/", {
+    let req = await fetch("http://localhost:8080/Project2/api/user/login/", {
         method: 'Post',
         headers: {'Content-type': 'application/json'},
         body: JSON.stringify(loginObj)
     });
 
-    let res = await req.json();
+    let res = await req.text();
 
+    console.log(username);
     console.log("push user to the next page");
     console.log(res);
     window.location.href = "./logged-in.html";
 
     } catch(e){
-        errorMessage.innerText = "Incorrect credentials. Please try again."
+        //errorMessage.innerText = "Incorrect credentials. Please try again."
         console.log("The user did not login successfully");
         console.log(e);
     }
