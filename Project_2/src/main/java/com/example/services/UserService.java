@@ -34,13 +34,13 @@ public class UserService {
 
 		return ret;
 	}
-    public User login(String username, String password) {
+    public String login(String username, String password) {
 		
 		List<User> Users = uDao.getAllUsers();
 		
 		for(User u: Users) {
 			if(u.getUsername().equals(username) && u.getPassword().equals(password)) {
-				return u;
+				return u.getUsername();
 			}
 		}
 		
