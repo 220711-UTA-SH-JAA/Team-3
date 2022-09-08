@@ -5,23 +5,25 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.dao.ItemDao;
 import com.example.dao.UserDao;
+import com.example.models.Item;
 import com.example.models.User;
 
 @Service("UserServiceBean")
 public class UserService {
     @Autowired
     private UserDao uDao;
+	private ItemDao iDao;
 
-    public UserService(UserDao uDao) {
+    public UserService(UserDao uDao, ItemDao iDao) {
         this.uDao = uDao;
+		this.iDao = iDao;
     }
-    public void printAllUsers() {
+    public List<User> printAllUsers() {
 		List<User> allUsers = uDao.getAllUsers();
+		return allUsers;
 		
-		for(User u: allUsers) {
-			System.out.println(u);
-		}
 	}
     public User saveUser(User u) {
 		
@@ -57,5 +59,11 @@ public class UserService {
 		
 		return null;
 	}
+	public List<Item> printAllItems() {
+		List<Item> allItems = iDao.getAllItems();
+		return allItems;
+		
+	}
+	
 
 }
