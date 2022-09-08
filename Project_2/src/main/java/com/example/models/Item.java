@@ -16,7 +16,7 @@ public class Item {
 	@Column(name="item_id")
 	public Integer itemId;
 	
-	@Column(name="item_name")
+	@Column(name="item_name", unique = true)
 	public String itemName;
 	
 	@Column(name="item_price")

@@ -17,7 +17,7 @@ import com.example.models.Item;
 import com.example.models.User;
 import com.example.services.UserService;
 
-import antlr.collections.List;
+
 @RestController()
 @RequestMapping("/user")
 public class UserController {
@@ -46,5 +46,10 @@ public class UserController {
     @GetMapping("/allproducts")
     public @ResponseBody java.util.List<Item> allItems(){
         return uService.printAllItems();
+    }
+    @PostMapping("/createitem")
+    public ResponseEntity<Object> createItem(@RequestBody Item i ){
+        return new ResponseEntity<>(uService.saveItem(i), HttpStatus.CREATED);
+
     }
 }

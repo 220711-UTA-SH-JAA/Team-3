@@ -64,6 +64,17 @@ public class UserService {
 		return allItems;
 		
 	}
+	public Item saveItem(Item i) {
+		
+		
+		iDao.createItem(i);
+		
+		Item ret = iDao.getAllItems().stream()
+				.filter(Item -> Item.getItemName().equals(i.getItemName()))
+				.findFirst().get();
+
+		return ret;
+	}
 	
 
 }
