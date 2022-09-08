@@ -39,7 +39,7 @@ public class Order{
 			joinColumns = {@JoinColumn(name="order_id")},
 			inverseJoinColumns = {@JoinColumn(name="item_id")}
 	)
-	@Column(name = "items")
+	
 	public List<Item> items;
 	
 	public Order() {

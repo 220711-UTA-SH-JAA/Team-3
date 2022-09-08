@@ -21,6 +21,10 @@ public class Item {
 	
 	@Column(name="item_price")
 	public Double itemPrice;
+
+	//store a ling
+	
+
 	
 	public Item() {
 		super();
