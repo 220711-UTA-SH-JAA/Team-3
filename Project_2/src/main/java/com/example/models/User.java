@@ -1,10 +1,18 @@
 package com.example.models;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.GenerationType;
 import javax.persistence.OneToOne;
 
@@ -32,10 +40,23 @@ public class User {
 	@Column(unique = true)
 	public String email;
 
+	public Set<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
+
 	@Column(unique = true)
 	public String username;
 
 	public String password;
+	
+	@OneToMany(mappedBy="user", cascade= CascadeType.ALL, fetch=FetchType.EAGER)
+	@JsonIgnore
+	private Set<Order> orders;
+	
 
 	public User(String firstName, String lastName, String email, String username, String password) {
 
