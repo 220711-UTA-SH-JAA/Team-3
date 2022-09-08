@@ -30,7 +30,7 @@ public class OrderDaoHibernate implements OrderDao {
 	@Override
 	public void createOrder(Order order) {
 		
-		//HibernateUtil.getSession().save(order);
+		//sessFact.getCurrentSession().save(order);
 		
 		sessFact.getCurrentSession().save(order);
 		
@@ -40,7 +40,7 @@ public class OrderDaoHibernate implements OrderDao {
 
 	@Override
 	public List<Order> getOrdersByUser(User user) {
-		List<Order> userOrders = HibernateUtil.getSession().createQuery("from Order where user=:user ORDER BY order_Id", Order.class).setParameter("user",user).list();
+		List<Order> userOrders = sessFact.getCurrentSession().createQuery("from Order where user=:user ORDER BY order_Id", Order.class).setParameter("user",user).list();
 		
 		return userOrders;
 
