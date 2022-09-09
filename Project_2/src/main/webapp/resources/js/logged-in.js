@@ -1,7 +1,8 @@
 //Have some function as soon as the window loads from the server
 
 let user = localStorage.key(0);
-
+if(user==null){window.location.href = "./login.html";}
+else{
 console.log(user);
 
 let loginObj = {
@@ -59,6 +60,8 @@ lg.addEventListener("click", logout)
 function updateUserHtml(users){
 
     let accountDiv = document.getElementById("")
+
+}
 
 }
 //work on the session details, just need to finish formatting profile page, accessing user variables, and logging out bar
