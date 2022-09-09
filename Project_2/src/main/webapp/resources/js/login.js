@@ -11,7 +11,7 @@ menu.addEventListener('click', mobileMenu);
 
 let usernameElement = document.getElementById("username");
 let passwordElement = document.getElementById("password");
-let errorMessage = document.getElementById("login-error");
+let errorMessage = document.getElementById("error");
 let formElement = document.getElementById("form");
 form.addEventListener('submit', login);
 //let submitBtn = document.getElementById("")
@@ -65,7 +65,7 @@ fetch('http://localhost:8080/Project2/api/user/login/',{
         window.location.href = "./logged-in.html";
     } 
     else {
-      return Promise.reject('some other error: ' + response.status)
+      return Promise.reject(errorMessage.innerText="Invalid Credentials")
     }
   })
   .then(data => console.log('data is', data))

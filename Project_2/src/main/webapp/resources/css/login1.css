@@ -322,6 +322,10 @@ input[type="submit"]:hover {
     text-decoration: none;
 }
 
+#error{
+	text-align: center;
+}
+
 .signup_link a:hover {
     text-decoration: underline;
 }
