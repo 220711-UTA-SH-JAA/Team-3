@@ -34,6 +34,7 @@ let lastNameElement = document.getElementById("lastName");
 let usernameElement = document.getElementById("username");
 let passwordElement = document.getElementById("password");
 let emailElement = document.getElementById("email");
+let errorMessage = document.getElementById("error");
 let formElement = document.getElementById("form");
 form.addEventListener('submit', login);
 //let submitBtn = document.getElementById("")
@@ -65,7 +66,7 @@ async function login(ethan){
     console.log(mySessionData);
 
     console.log("Ready to register: ", loginObj);
-try{
+/*try{
     //if the request is successful all is well, if it fails/returns !200 it will be in the catch
     let req = await fetch("http://localhost:8080/Project2/api/user/", {
         method: 'Post',
@@ -79,7 +80,23 @@ try{
     console.log(res);
     window.location.href = "./logged-in.html";
     } catch(e){
+		errorMessage.innerText="Invalid Credentials"
         console.log("The user did not register successfully");
         console.log(e);
+    } */
+    fetch('http://localhost:8080/Project2/api/user/',{
+             method: 'Post',
+             headers: {'Content-type': 'application/json'},
+            body: JSON.stringify(loginObj)
+         }) 
+  .then(response => {
+    if (response.ok) {
+        window.location.href = "./logged-in.html";
+    } 
+    else {
+      return Promise.reject(errorMessage.innerText="User Already Exists")
     }
+  })
+  .then(data => console.log('data is', data))
+  .catch(error => console.log('error is', error));
 }
