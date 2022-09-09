@@ -26,7 +26,7 @@ let loginObj = {
 
     //We can append the welcome message
     document.getElementById("profile-welcome").innerText = 'Welcome back ' + user;
-    
+    document.getElementById("user-drop").innerText = user;
 
 console.log(acc);
 /*fetch('http://localhost:8080/Project2/api/user/login/',{
