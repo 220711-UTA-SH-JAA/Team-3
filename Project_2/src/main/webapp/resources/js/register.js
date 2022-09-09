@@ -60,6 +60,10 @@ async function login(ethan){
         email
     }
 
+    sessionStorage.setItem("SessionStore", JSON.stringify(loginObj));
+    const mySessionData = sessionStorage.getItem("SessionStore");
+    console.log(mySessionData);
+
     console.log("Ready to register: ", loginObj);
 try{
     //if the request is successful all is well, if it fails/returns !200 it will be in the catch

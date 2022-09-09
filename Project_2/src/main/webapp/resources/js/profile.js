@@ -8,3 +8,53 @@ const mobileMenu = () => {
 }
 
 menu.addEventListener('click', mobileMenu);
+
+let usernameElement = document.getElementById("username");
+let passwordElement = document.getElementById("password");
+let emailElement = document.getElementById("email");
+let errorMessage = document.getElementById("login-error");
+let formElement = document.getElementById("form");
+form.addEventListener('submit', login);
+//let submitBtn = document.getElementById("")
+//submitBtn.addEventListener("click", login);
+
+async function login(ethan){
+
+    ethan.preventDefault();
+
+    //errorMessage.innerText = "";
+
+    console.log("We handled the click event of the submit button");
+    //getting username from the form field
+    let username = usernameElement.value;
+    //let's get the password from the form field
+    let password = passwordElement.value;
+
+    let loginObj = {
+        username,
+        password,
+        email
+    }
+
+    console.log("Ready to login: ", loginObj);
+try{
+    //if the request is successful all is well, if it fails/returns !200 it will be in the catch
+    let req = await fetch("http://localhost:8080/Project2/api/user/login/", {
+        method: 'Post',
+        headers: {'Content-type': 'application/json'},
+        body: JSON.stringify(loginObj)
+    });
+
+    let res = await req.text();
+
+    console.log(username);
+    console.log("push user to the next page");
+    console.log(res);
+    window.location.href = "./logged-in.html";
+
+    } catch(e){
+        //errorMessage.innerText = "Incorrect credentials. Please try again."
+        console.log("The user did not login successfully");
+        console.log(e);
+    }
+}
