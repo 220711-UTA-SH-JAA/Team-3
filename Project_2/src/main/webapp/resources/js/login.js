@@ -35,24 +35,42 @@ async function login(ethan){
     }
 
     console.log("Ready to login: ", loginObj);
-try{
-    //if the request is successful all is well, if it fails/returns !200 it will be in the catch
-    let req = await fetch("http://localhost:8080/Project2/api/user/login/", {
-        method: 'Post',
-        headers: {'Content-type': 'application/json'},
-        body: JSON.stringify(loginObj)
-    });
+// try{
+//     //if the request is successful all is well, if it fails/returns !200 it will be in the catch
+//     let req = await fetch("http://localhost:8080/Project2/api/user/login/", {
+//         method: 'Post',
+//         headers: {'Content-type': 'application/json'},
+//         body: JSON.stringify(loginObj)
+//     });
 
-    let res = await req.text();
+//     let res = await req.text();
+    
+//     console.log(username);
+//     console.log("push user to the next page");
+//     console.log(res);
+//     window.location.href = "./logged-in.html";
 
-    console.log(username);
-    console.log("push user to the next page");
-    console.log(res);
-    window.location.href = "./logged-in.html";
-
-    } catch(e){
-        //errorMessage.innerText = "Incorrect credentials. Please try again."
-        console.log("The user did not login successfully");
-        console.log(e);
+//     } catch(e){
+//         //errorMessage.innerText = "Incorrect credentials. Please try again."
+//         console.log("The user did not login successfully");
+//         console.log(e);
+//     }
+fetch('http://localhost:8080/Project2/api/user/login/',{
+             method: 'Post',
+             headers: {'Content-type': 'application/json'},
+            body: JSON.stringify(loginObj)
+         }) 
+  .then(response => {
+    if (response.ok) {
+        window.location.href = "./logged-in.html";
+    } 
+    else {
+      return Promise.reject('some other error: ' + response.status)
     }
+  })
+  .then(data => console.log('data is', data))
+  .catch(error => console.log('error is', error));
+
+
+    
 }

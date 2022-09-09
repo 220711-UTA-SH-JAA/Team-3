@@ -33,10 +33,14 @@ public class UserController {
 
     }
     @PostMapping("/login")
-    public @ResponseBody String LogingUser(@RequestBody LinkedHashMap<String, String> body){
+    public ResponseEntity<String> LogingUser(@RequestBody LinkedHashMap<String, String> body){
+    	
         String username = body.get("username");
 		String password = body.get("password");
-        return uService.login(username, password);
+        if(uService.login(username, password) != null){
+            return new ResponseEntity<>(uService.login(username, password), HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Invalid Credentials", HttpStatus.NOT_FOUND);
 
     }
     @GetMapping("/allusers")
