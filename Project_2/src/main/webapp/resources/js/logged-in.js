@@ -50,9 +50,11 @@ return Promise.reject()
 
 async function logout() {
 
-    sessionStorage.removeItem(loginObj);
-
+    localStorage.clear();
+    window.location.href = "./login.html";
 }
+let lg = document.getElementById("logout");
+lg.addEventListener("click", logout)
 
 function updateUserHtml(users){
 
