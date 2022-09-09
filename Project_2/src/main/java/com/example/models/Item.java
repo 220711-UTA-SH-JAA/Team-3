@@ -16,12 +16,33 @@ public class Item {
 	@Column(name="item_id")
 	public Integer itemId;
 	
-	@Column(name="item_name")
+	@Column(name="item_name", unique = true)
 	public String itemName;
 	
 	@Column(name="item_price")
 	public Double itemPrice;
+
+	@Column(name="img_src")
+	public String imgSrc;
 	
+
+	
+	public Item(Integer itemId, String itemName, Double itemPrice, String imgSrc) {
+		super();
+		this.itemId = itemId;
+		this.itemName = itemName;
+		this.itemPrice = itemPrice;
+		this.imgSrc = imgSrc;
+	}
+
+	public String getImgSrc() {
+		return imgSrc;
+	}
+
+	public void setImgSrc(String imgSrc) {
+		this.imgSrc = imgSrc;
+	}
+
 	public Item() {
 		super();
 	}

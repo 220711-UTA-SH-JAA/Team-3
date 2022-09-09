@@ -18,17 +18,17 @@ import com.example.models.Cart;
 
 
 
-@Transactional //Spring ORM manages our tranactions
+@Transactional //Spring ORM manages our transactions
 @Repository("CartDaoBean")
 public class CartDaoHibernate implements CartDao {
 	
 	
-	//private SessionFactory sessFact;
+	private SessionFactory sessFact;
 	
 	@Autowired
-	public CartDaoHibernate() {
+	public CartDaoHibernate(SessionFactory sessFact) {
 		
-		//this.sessFact = HibernateUtil.getSession();
+		this.sessFact = sessFact;
 	}
 	
 	
@@ -37,13 +37,7 @@ public class CartDaoHibernate implements CartDao {
 	@Override
 	public void createCart(Cart cart) {
 		
-		//HibernateUtil.getSession().save(cart);
-		
-		Session session = HibernateUtil.getSession();
-		session.beginTransaction();
-		session.persist(cart);
-		session.getTransaction().commit();
-	
+		sessFact.getCurrentSession().save(cart);
 	}
 	
 
@@ -51,21 +45,21 @@ public class CartDaoHibernate implements CartDao {
 
 	@Override
 	public void addItemToCart(Cart cart, Item item) {
-		HibernateUtil.getSession().save(item);
+		sessFact.getCurrentSession().save(item);
 	
 			
 	}
 
 	@Override
 	public void deleteItemFromCart(Cart cart, Item item) {
-		HibernateUtil.getSession().delete(item);
+		sessFact.getCurrentSession().delete(item);
 		
 	}
 	
 	
 	@Override
 	public Cart getCartByUser(User user) {	
-		List<Cart> userCarts = HibernateUtil.getSession().createQuery("from Cart cart where user=:user ", Cart.class).setParameter("user",user).list();
+		List<Cart> userCarts = sessFact.getCurrentSession().createQuery("from Cart cart where user=:user ", Cart.class).setParameter("user",user).list();
 	
 		if (userCarts.size() < 1) {
 			return null;

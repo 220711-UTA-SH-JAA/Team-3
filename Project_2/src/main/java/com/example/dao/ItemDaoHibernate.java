@@ -15,22 +15,24 @@ import com.example.utils.HibernateUtil;
 @Repository("ItemDaoBean")
 public class ItemDaoHibernate implements ItemDao {
 	
+	private SessionFactory sessFact;
+
 	
 	@Autowired
-	public ItemDaoHibernate() {
-		//this.sessFact = sessFact;
+	public ItemDaoHibernate(SessionFactory sessFact) {
+		this.sessFact = sessFact;
 	}
 
 	@Override
-	public void createItem(Item p) {
-		HibernateUtil.getSession().save(p);
+	public void createItem(Item item) {
+		sessFact.getCurrentSession().save(item);
 		
 	}
 
 	@Override
 	public Item getItemById(int id) {
 		
-		List<Item> item = HibernateUtil.getSession().createQuery("from Item where itemId=:id", Item.class).setParameter("id", id).list();
+		List<Item> item = sessFact.getCurrentSession().createQuery("from Item where itemId=:id", Item.class).setParameter("id", id).list();
 		
 		if(item.size() < 1) {
 			return null;
@@ -41,28 +43,28 @@ public class ItemDaoHibernate implements ItemDao {
 
 	@Override
 	public List<Item> getAllItems() {
-		return HibernateUtil.getSession().createQuery("from Item", Item.class).list();
+		return sessFact.getCurrentSession().createQuery("from Item", Item.class).list();
 	}
 		
 
 	@Override
 	public Item getItemByName(String name) {
 		
-		Item p = HibernateUtil.getSession().createQuery("from Item where itemName=:name", Item.class).setParameter("name", name).uniqueResult();
+		Item p = sessFact.getCurrentSession().createQuery("from Item where itemName=:name", Item.class).setParameter("name", name).uniqueResult();
 		
 		
 		return p;
 	}
 
 	@Override
-	public void updateItem(Item p) {
-		HibernateUtil.getSession().update(p);
+	public void updateItem(Item item) {
+		sessFact.getCurrentSession().update(item);
 		
 	}
 
 	@Override
-	public void deleteItem(Item p) {
-		HibernateUtil.getSession().delete(p);
+	public void deleteItem(Item item) {
+		sessFact.getCurrentSession().delete(item);
 	
 		
 	}

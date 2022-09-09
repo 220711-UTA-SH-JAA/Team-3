@@ -6,14 +6,18 @@ import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.models.Item;
 import com.example.models.User;
 import com.example.services.UserService;
+
+
 @RestController()
 @RequestMapping("/user")
 public class UserController {
@@ -33,6 +37,19 @@ public class UserController {
         String username = body.get("username");
 		String password = body.get("password");
         return uService.login(username, password);
+
+    }
+    @GetMapping("/allusers")
+    public @ResponseBody java.util.List<User> allUser(){
+        return uService.printAllUsers();
+    }
+    @GetMapping("/allproducts")
+    public @ResponseBody java.util.List<Item> allItems(){
+        return uService.printAllItems();
+    }
+    @PostMapping("/createitem")
+    public ResponseEntity<Object> createItem(@RequestBody Item i ){
+        return new ResponseEntity<>(uService.saveItem(i), HttpStatus.CREATED);
 
     }
 }

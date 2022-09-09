@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RevaMart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/register.css" />
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<nav class="navbar">
+    <div class="navbar__container">
+        <a href=".\main.html" id="navbar__logo">RevaMart</a>
+        <div class="navbar__toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="navbar__menu">
+            <li class="navbar__item">
+                <a href=".\main.html" class="navbar__links" id="home-page">Home</a>
+            </li>
+            <li class="navbar__item">
+                <a href=".\products.html" class="navbar__links" id="products-page">Products</a>
+            </li>
+            <li class="navbar__item">
+                <a href=".\cart.html" class="navbar__links" id="cart-page">Shopping Cart</a>
+            </li>
+            <li class="navbar__item">
+                <a href=".\profile.html" class="navbar__links" id="cart-page">Profile</a>
+            </li>
+            <li class="navbar__item">
+                <a href=".\login.html" class="navbar__links" id="login-page">Login</a>
+            </li>
+            <li class="navbar__btn">
+                <a href=".\register.html" class="button" id="register-page">Register</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <!-- Hero Section -->
+    <div class="center">
+        <h1>Register Account</h1>
+        <form method="post" id="form">
+            <div class="txt_field">
+                <input type="text" id="firstName" required>
+                <span></span>
+                <label>First Name</label>
+            </div>
+            <div class="txt_field">
+                <input type="text" id="lastName" required>
+                <span></span>
+                <label>Last Name</label>
+            </div>
+            <div class="txt_field">
+                <input type="text" id="username" required>
+                <span></span>
+                <label>Username</label>
+            </div>
+            <div class="txt_field">
+                <input type="password" id="password" required>
+                <span></span>
+                <label>Password</label>
+            </div>
+            <div class="txt_field">
+                <input type="text" id="email" required>
+                <span></span>
+                <label>Email</label>
+            </div>
+            <input type="submit" value="Register">
+            <div class="signup_link">
+                Already have an account? <a href=".\login.html">Login</a>
+            </div>
+        </form>
+    </div>
+    <script src="../js/register.js"></script>
+</body>
+</html>
