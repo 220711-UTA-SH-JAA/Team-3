@@ -34,6 +34,8 @@ async function login(ethan){
         password
     }
 
+    localStorage.setItem(username, password);
+
     console.log("Ready to login: ", loginObj);
 // try{
 //     //if the request is successful all is well, if it fails/returns !200 it will be in the catch

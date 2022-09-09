@@ -50,22 +50,38 @@
             </li>
             <li class="navbar__item">
             </li>
-            <li class="navbar__btn">
-                <a href=".\register.html" class="button" id="register-page">Register</a>
+            <li class="navbar__btn" onClick="menuToggle();">
+                <a class="button" id="user-drop">${user.username}</a>
+                <ul class="drop-menu">
+                    <li>My Profile</li>
+                    <li>Logout</li>
+                </ul>
             </li>
         </ul>
     </div>
 </nav>
 
     <!-- Hero Section -->
-    <div class="profile-content">
+    <div class="profile-content" style="text-align:center;">
         <h1 id="profile-welcome"></h1>
         <div class="new-account">
-            <h3>Open a new account with us today ${user.firstName}</h1>
-            <div class="account-input">
+            <div class="account-menu">
+                <ul>
+                    <li>Update Profile</li>
+                    <li>View Shopping Cart</li>
+                    <li>View Order History</li>
+                    <li>Account Information</li>
+                    <li>Delete Account</li>
+                </ul>
             </div>
         </div>
     </div>
     <script src="../js/logged-in.js"></script>
+    <script>
+        function menuToggle(){
+            const toggleMenu = document.querySelector('.drop-menu');
+            toggleMenu.classList.toggle('active')
+        }
+    </script>
 </body>
 </html>

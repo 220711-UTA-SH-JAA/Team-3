@@ -92,10 +92,15 @@
     border: none;
     outline: none;
     border-radius: 4px;
-    background: #56ab2f;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #a8e063, #56ab2f);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #a8e063, #56ab2f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+    background: #f5af19;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #f5af19, #f12711);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #f5af19, #f12711); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
     color: white;
+    transition: all 0.3s ease;
+}
+
+.button:hover{
+    color:#434343;
     transition: all 0.3s ease;
 }
 
@@ -324,4 +329,82 @@ input[type="submit"]:hover {
 
 .signup_link a:hover {
     text-decoration: underline;
+}
+
+.profile-content {
+    margin: auto;
+  width: 50%;
+  border: 3px ;
+  padding: 10px;
+}
+.profile-content {
+    text-align: center;
+    padding: 20px 0 20px 0;
+    border-bottom: none;
+}
+
+.profile-content .account-menu {
+    position:absolute;
+    border-radius: 25px;
+    top: 40%;
+    left: 50%;
+    margin-top: -60px;
+    margin-left: -100px;
+    padding: 10px 20px;
+    background: #fff;
+    width: 200px;
+    box-sizing: 0 5px 25px rgba(0,0,0,0.1);
+    transform: .5s;
+}
+
+.profile-content .account-menu ul li
+{
+    list-style: none;
+    padding: 10px 0;
+    border-top: 1px solid rgba(0,0,0,0.5);
+    direction: flex;
+    align-items: center;
+
+}
+
+.profile-content .account-menu ul li:hover
+{
+    color:#fd7c02;
+    cursor: pointer;
+}
+
+.drop-menu {
+    position: absolute;
+    top: 120px;
+    right: 60px;
+    padding: 10px 20px;
+    background: #fff;
+    width: 200px;
+    box-sizing: 0 5px 25px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    transition: 0.5s;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.navbar__btn ul li
+{
+    list-style: none;
+    padding: 10px 0;
+    border-top: 1px solid rgba(0,0,0,0.5);
+    direction: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.drop-menu:hover {
+    color: #fd7c02;
+    cursor: pointer;
+}
+
+.navbar__btn .drop-menu.active 
+{
+    top: 80px;
+    visibility: visible;
+    opacity: 1;
 }
